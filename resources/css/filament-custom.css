@@ -1,0 +1,173 @@
+/* Custom Filament Theme - Emerald & Cream */
+
+/* ============================================
+   COLOR PALETTE
+   - Deep Emerald: #00695C (primary)
+   - Light Teal: #26A69A (secondary)
+   - Coral Orange: #ee8358 (accent)
+   - Cream: #FFF8E7 (background)
+   ============================================ */
+
+/* Main Content Background */
+.fi-main {
+    background-color: #FFF8E7 !important;
+}
+
+/* Sidebar Styling */
+.fi-sidebar {
+    background-color: #00695C !important;
+}
+
+.fi-sidebar-nav-item-label {
+    color: rgba(255, 255, 255, 0.9) !important;
+}
+
+.fi-sidebar-nav-item-icon {
+    color: rgba(255, 255, 255, 0.7) !important;
+}
+
+.fi-sidebar-nav-item:hover .fi-sidebar-nav-item-label,
+.fi-sidebar-nav-item:hover .fi-sidebar-nav-item-icon {
+    color: white !important;
+}
+
+.fi-sidebar-nav-item-active {
+    background-color: rgba(255, 255, 255, 0.15) !important;
+}
+
+.fi-sidebar-nav-item-active .fi-sidebar-nav-item-label,
+.fi-sidebar-nav-item-active .fi-sidebar-nav-item-icon {
+    color: white !important;
+}
+
+/* Top Bar */
+.fi-topbar {
+    background-color: #FFF8E7 !important;
+    border-bottom: 1px solid #E0F2F1 !important;
+}
+
+/* Cards & Sections */
+.fi-section {
+    background-color: white !important;
+    border: 1px solid #E0F2F1 !important;
+}
+
+/* Tables */
+.fi-ta-table {
+    background-color: white !important;
+}
+
+.fi-ta-header-cell {
+    background-color: #E0F2F1 !important;
+    color: #00695C !important;
+    font-weight: 600 !important;
+}
+
+.fi-ta-row:hover {
+    background-color: #FFF8E7 !important;
+}
+
+/* Buttons - Primary */
+.fi-btn-primary {
+    background-color: #00695C !important;
+    border-color: #00695C !important;
+    transition: all 0.2s !important;
+}
+
+.fi-btn-primary:hover {
+    background-color: #004D40 !important;
+    border-color: #004D40 !important;
+    transform: translateY(-1px) !important;
+    box-shadow: 0 4px 8px rgba(0, 105, 92, 0.3) !important;
+}
+
+/* Buttons - Danger/Warning */
+.fi-btn-danger {
+    background-color: #ee8358 !important;
+    border-color: #ee8358 !important;
+}
+
+.fi-btn-danger:hover {
+    background-color: #E64A19 !important;
+    border-color: #E64A19 !important;
+}
+
+/* Form Inputs */
+.fi-input:focus,
+.fi-select:focus,
+.fi-textarea:focus {
+    border-color: #00695C !important;
+    box-shadow: 0 0 0 2px rgba(0, 105, 92, 0.2) !important;
+}
+
+/* Badges */
+.fi-badge-success {
+    background-color: #00695C !important;
+    color: white !important;
+}
+
+.fi-badge-warning {
+    background-color: #ee8358 !important;
+    color: white !important;
+}
+
+.fi-badge-info {
+    background-color: #26A69A !important;
+    color: white !important;
+}
+
+/* Links */
+.fi-link {
+    color: #00695C !important;
+}
+
+.fi-link:hover {
+    color: #004D40 !important;
+}
+
+/* Pagination */
+.fi-pagination-item-active {
+    background-color: #00695C !important;
+    color: white !important;
+}
+
+/* Modal Headers */
+.fi-modal-header {
+    background-color: #00695C !important;
+    color: white !important;
+}
+
+/* Tab Navigation */
+.fi-tabs-tab-active {
+    border-color: #00695C !important;
+    color: #00695C !important;
+}
+
+/* Stats Widgets */
+.fi-wi-stats-overview-stat-value {
+    color: #00695C !important;
+}
+
+/* Notification/Alert Colors */
+.fi-notification-success {
+    background-color: #00695C !important;
+}
+
+.fi-notification-warning {
+    background-color: #ee8358 !important;
+}
+
+/* Header Brand */
+.fi-header-brand {
+    color: white !important;
+}
+
+/* Breadcrumbs */
+.fi-breadcrumbs-link {
+    color: #00695C !important;
+}
+
+/* Search Input */
+.fi-global-search-input:focus {
+    border-color: #00695C !important;
+}
