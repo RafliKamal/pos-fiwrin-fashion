@@ -31,6 +31,10 @@ class RequestPelangganForm
                     ->default('menunggu')
                     ->required(),
                 DatePicker::make('tanggal_request'),
+                \Filament\Forms\Components\Textarea::make('catatan')
+                    ->label('Catatan')
+                    ->placeholder('Nomor telepon atau nama pelanggan')
+                    ->rows(2),
             ]);
     }
 }

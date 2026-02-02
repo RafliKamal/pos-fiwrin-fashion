@@ -39,6 +39,11 @@ class RequestPelanggansTable
                 TextColumn::make('tanggal_request')
                     ->date()
                     ->sortable(),
+                TextColumn::make('catatan')
+                    ->label('Catatan')
+                    ->searchable()
+                    ->limit(9)
+                    ->toggleable(),
                 TextColumn::make('created_at')
                     ->dateTime()
                     ->sortable()
