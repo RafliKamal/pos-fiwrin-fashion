@@ -109,7 +109,7 @@ def predict_next_weeks(num_weeks=4):
     categories = artifacts.get('categories', le_kategori.classes_)
     evaluation = artifacts.get('evaluation', {})
 
-    recent_sales = get_recent_weekly_sales()
+    history_df = get_recent_weekly_sales().copy()
 
     today = datetime.date.today()
     
@@ -122,6 +122,7 @@ def predict_next_weeks(num_weeks=4):
             'date': future_date,
             'year': year,
             'week': week,
+            'year_week': year * 100 + week,
             'label': f"Minggu {i}"
         })
 
@@ -132,6 +133,7 @@ def predict_next_weeks(num_weeks=4):
         date = week_info['date']
         weekly_total = 0
         week_by_category = {}
+        new_history_rows = []
         
         for cat_name in categories:
             bulan = date.month
@@ -147,7 +149,7 @@ def predict_next_weeks(num_weeks=4):
             near_lebaran = is_near_lebaran(date)
             near_idul_adha = is_near_idul_adha(date)
             
-            lag_1, lag_2, lag_4, rolling_mean_4 = calculate_lag_features(recent_sales, cat_name)
+            lag_1, lag_2, lag_4, rolling_mean_4 = calculate_lag_features(history_df, cat_name)
 
             input_row = pd.DataFrame([{
                 'bulan': bulan,
@@ -168,6 +170,16 @@ def predict_next_weeks(num_weeks=4):
             category_totals[cat_name] += qty_rounded
             week_by_category[cat_name] = qty_rounded
             weekly_total += qty_rounded
+
+            new_history_rows.append({
+                'year_week': week_info['year_week'],
+                'Kategori': cat_name,
+                'Qty': qty_rounded
+            })
+
+        if new_history_rows:
+            new_df = pd.DataFrame(new_history_rows)
+            history_df = pd.concat([history_df, new_df], ignore_index=True)
 
         weekly_predictions.append({
             'week_label': week_info['label'],
