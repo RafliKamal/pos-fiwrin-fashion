@@ -7,6 +7,7 @@ use Filament\Forms\Components\DatePicker;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
 use Filament\Schemas\Schema;
+use Filament\Forms\Components\Textarea;
 
 class RequestPelangganForm
 {
@@ -31,7 +32,7 @@ class RequestPelangganForm
                     ->default('menunggu')
                     ->required(),
                 DatePicker::make('tanggal_request'),
-                \Filament\Forms\Components\Textarea::make('catatan')
+                Textarea::make('catatan')
                     ->label('Catatan')
                     ->placeholder('Nomor telepon atau nama pelanggan')
                     ->rows(2),
