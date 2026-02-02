@@ -208,7 +208,7 @@ class TransaksiExport
         $grouped = $transaksis->groupBy(fn($t) => Carbon::parse($t->waktu_transaksi)->format('W/Y'));
 
         foreach ($grouped->sortKeys() as $week => $items) {
-            $sheet->setCellValue('A' . $startRow, 'Minggu ' . $week);
+            $sheet->setCellValue('A' . $startRow, $this->formatWeekLabel($week));
             $sheet->setCellValue('B' . $startRow, $items->count());
             $sheet->setCellValue('C' . $startRow, $items->sum('total_bayar'));
             $sheet->setCellValue('D' . $startRow, $items->sum('profit'));
@@ -325,7 +325,7 @@ class TransaksiExport
 
         foreach ($grouped->sortKeys() as $week => $categories) {
             foreach ($categories as $kategori => $items) {
-                $sheet->setCellValue('A' . $startRow, 'Minggu ' . $week);
+                $sheet->setCellValue('A' . $startRow, $this->formatWeekLabel($week));
                 $sheet->setCellValue('B' . $startRow, $kategori);
                 $sheet->setCellValue('C' . $startRow, $items->sum('jumlah'));
                 $sheet->setCellValue('D' . $startRow, $items->sum('subtotal'));
@@ -363,7 +363,7 @@ class TransaksiExport
             $transfer_mandiri = $items->where('metode_pembayaran', 'transfer_mandiri')->sum('total_bayar');
             $qris = $items->where('metode_pembayaran', 'qris')->sum('total_bayar');
 
-            $sheet->setCellValue('A' . $startRow, 'Minggu ' . $week);
+            $sheet->setCellValue('A' . $startRow, $this->formatWeekLabel($week));
             $sheet->setCellValue('B' . $startRow, $tunai);
             $sheet->setCellValue('C' . $startRow, $transfer_bca);
             $sheet->setCellValue('D' . $startRow, $transfer_bri);
@@ -459,5 +459,18 @@ class TransaksiExport
             ],
         ];
         $sheet->getStyle($range)->applyFromArray($dataStyle);
+    }
+    protected function formatWeekLabel(string $weekYear): string
+    {
+        try {
+            [$week, $year] = explode('/', $weekYear);
+            $date = Carbon::now()->setISODate((int) $year, (int) $week);
+            $start = $date->startOfWeek()->format('d M');
+            $end = $date->endOfWeek()->format('d M');
+
+            return "Minggu {$week} ({$start} - {$end})";
+        } catch (\Exception $e) {
+            return 'Minggu ' . $weekYear;
+        }
     }
 }
