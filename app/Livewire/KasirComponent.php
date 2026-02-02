@@ -194,6 +194,16 @@ class KasirComponent extends Component
     {
         if ($this->editingItemId && isset($this->cart[$this->editingItemId])) {
             $hargaBaru = max(0, (int) $this->editingHargaBaru);
+            $originalPrice = $this->cart[$this->editingItemId]['original_price'];
+
+            if ($hargaBaru > $originalPrice) {
+                Notification::make()
+                    ->title('Gagal Ubah Harga')
+                    ->body('Harga baru tidak boleh melebihi harga jual asli (Rp ' . number_format($originalPrice, 0, ',', '.') . ').')
+                    ->danger()
+                    ->send();
+                return;
+            }
 
             $this->cart[$this->editingItemId]['price'] = $hargaBaru;
             $this->updateSubtotal($this->editingItemId);

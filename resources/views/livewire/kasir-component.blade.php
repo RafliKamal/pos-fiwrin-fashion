@@ -369,7 +369,8 @@
         @if($this->lastTransaction)
             <div class="store-header">
                 <div class="store-name">FIWRIN FASHION</div>
-                <div class="store-info">Jl. Contoh No. 123, Kota Bandung</div>
+                <div class="store-info">Balubur Town Square (Baltos)</div>
+            <div class="store-info">Lantai 1 Blok X Nomor 36, Bandung</div>
                 <div class="store-info">Telp: 0812-3456-7890</div>
             </div>
 
