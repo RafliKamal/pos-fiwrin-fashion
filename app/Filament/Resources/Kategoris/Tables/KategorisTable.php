@@ -34,7 +34,22 @@ class KategorisTable
             ])
             ->toolbarActions([
                 BulkActionGroup::make([
-                    DeleteBulkAction::make(),
+                    DeleteBulkAction::make()
+                        ->before(function (DeleteBulkAction $action, $records) {
+                            $kategorisWithProduk = $records->filter(fn($kategori) => $kategori->produk()->exists());
+
+                            if ($kategorisWithProduk->isNotEmpty()) {
+                                $names = $kategorisWithProduk->pluck('nama_kategori')->join(', ');
+                                \Filament\Notifications\Notification::make()
+                                    ->danger()
+                                    ->title('Tidak dapat menghapus kategori')
+                                    ->body("Kategori berikut masih memiliki produk: {$names}")
+                                    ->persistent()
+                                    ->send();
+
+                                $action->cancel();
+                            }
+                        }),
                 ]),
             ]);
     }
